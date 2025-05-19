@@ -1,6 +1,6 @@
 # ChatApp: The Back End
 
-The back end of ChatApp is built with [Express](https://github.com/expressjs/express), [SocketIO](https://github.com/socketio/socket.io), and access to a TURN server provided by [Twilio](https://github.com/twilio). An infinite amount of chat users can join four user live streams and interact in real time.
+The back end of ChatApp is built with [Express](https://github.com/expressjs/express), [SocketIO](https://github.com/socketio/socket.io), and access to a TURN server provided by [Twilio](https://github.com/twilio). An infinite amount of chat users can join four user live streams and interact in real time. The live app is hosted by Glitch [here](https://spiritual-dynamic-horesradish.glitch.me/) (please allow a few minutes for app to spin up).
 
 ## Installing & Running Locally
 
