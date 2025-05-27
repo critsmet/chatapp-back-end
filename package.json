@@ -1,5 +1,5 @@
 {
-  "name": "websockets",
+  "name": "chatap-back-end",
   "version": "1.0.0",
   "description": "A websocket app using socket.io, express, react",
   "main": "index.js",
