@@ -5,7 +5,6 @@ require('dotenv').config();
 
 const accountSid = process.env.TWILIO_SSID ;
 const authToken = process.env.TWILIO_TOKEN
-console.log({accountSid, authToken})
 const twilioTokens = require('twilio')(accountSid, authToken);
 
 twilioTokens.tokens.create().then(obj => {
@@ -34,10 +33,12 @@ twilioTokens.tokens.create().then(obj => {
   const port = process.env.PORT || 4001;
 
   const router = express.Router();
+  app.use(router);
+  app.use(express.static(__dirname));
+
   let users = []
   let messages = []
   let broadcasts = []
-
   router.get("/clear-messages", (req, res) => {
     messages = []
     console.log("Messages cleared");
@@ -47,8 +48,6 @@ twilioTokens.tokens.create().then(obj => {
   })
 
 
-  app.use(router);
-  app.use(express.static(__dirname));
 
   io.on("connection", socket => {
     socket.emit("connected", iceServersArray, users)
