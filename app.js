@@ -14,7 +14,7 @@ twilioTokens.tokens.create().then(obj => {
   const app = express();
 
   app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:5173"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", process.env.NODE_ENV === 'production' ? "https://capable-biscochitos-fab766.netlify.app" : "http://localhost:5173"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
@@ -84,11 +84,11 @@ twilioTokens.tokens.create().then(obj => {
       console.log(`User ${user.username} has disconnected`);
     });
 
-    socket.on("sentMessage", (message) => {
+    socket.on("sentMessage", (text) => {
       let user = users.find(user => user.socketId === socket.id)
       let message = {
         username: user.username, 
-        message
+        message: text
       }
       messages.push(message)
       io.emit("newMessage", message)
