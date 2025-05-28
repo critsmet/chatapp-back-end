@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const accountSid = process.env.TWILIO_SSID ;
 const authToken = process.env.TWILIO_TOKEN
+console.log({accountSid, authToken})
 const twilioTokens = require('twilio')(accountSid, authToken);
 
 twilioTokens.tokens.create().then(obj => {
@@ -13,7 +14,7 @@ twilioTokens.tokens.create().then(obj => {
 
   const app = express();
 
-  const corsOrigin = process.env.NODE_ENV === 'production' ? "https://capable-biscochitos-fab766.netlify.app" : "http://localhost:5173"
+  const corsOrigin = process.env.NODE_ENV === 'production' ? "https://chatapp-front-end.pages.dev" : "http://localhost:5173"
 
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", corsOrigin); // update to match the domain you will make the request from
@@ -47,6 +48,7 @@ twilioTokens.tokens.create().then(obj => {
 
 
   app.use(router);
+  app.use(express.static(__dirname));
 
   io.on("connection", socket => {
     socket.emit("connected", iceServersArray, users)
