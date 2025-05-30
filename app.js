@@ -13,7 +13,7 @@ twilioTokens.tokens.create().then(obj => {
 
   const app = express();
 
-  const corsOrigin = process.env.NODE_ENV === 'production' ? "https://chatapp-front-end.pages.dev" : "http://localhost:5173"
+  const corsOrigin = process.env.NODE_ENV === 'production' ? "https://chatapp-front-end-zfdy.onrender.com" : "http://localhost:5173"
 
   console.log("env", process.env.NODE_ENV, {corsOrigin})
 
@@ -36,7 +36,6 @@ twilioTokens.tokens.create().then(obj => {
 
   const router = express.Router();
   app.use(router);
-  app.use(express.static(__dirname));
 
   let users = []
   let messages = []
