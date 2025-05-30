@@ -79,13 +79,13 @@ twilioTokens.tokens.create().then(obj => {
       users = users.filter(user => {
         if(user.socketId === socket.id){
           socket.broadcast.emit("userLogout", user)
+          console.log(`User ${user.username} has disconnected`);
           return false
         } else {
           return true
         }
       })
       broadcasts = broadcasts.filter(broadcast => broadcast !== socket.id)
-      console.log(`User ${user.username} has disconnected`);
     });
 
     socket.on("sentMessage", (text) => {
