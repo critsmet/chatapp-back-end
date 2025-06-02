@@ -51,7 +51,7 @@ twilioTokens.tokens.create().then(obj => {
 
 
   io.on("connection", socket => {
-    socket.emit("connected", iceServersArray, users, messages)
+    socket.emit("connectSuccess", iceServersArray, users, messages)
 
     socket.on("callUser", call => {
       io.to(call.socketId).emit('incomingCall', {
