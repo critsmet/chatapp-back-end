@@ -51,7 +51,7 @@ twilioTokens.tokens.create().then(obj => {
 
 
   io.on("connection", socket => {
-    socket.emit("connected", iceServersArray, users)
+    socket.emit("connected", iceServersArray, users, messages)
 
     socket.on("callUser", call => {
       io.to(call.socketId).emit('incomingCall', {
@@ -68,9 +68,9 @@ twilioTokens.tokens.create().then(obj => {
         socketId: socket.id, 
         username: username
       }
-      socket.emit("initializedSession", user, messages)
+      socket.emit("initializedSession", user)
       users.push(user)
-      socket.broadcast.emit("newUserJoin", user)
+      socket.broadcast.emit("userJoin", user)
       console.log(`User ${user.username} has joined`)
     })
 
@@ -88,7 +88,7 @@ twilioTokens.tokens.create().then(obj => {
       broadcasts = broadcasts.filter(broadcast => broadcast !== socket.id)
     });
 
-    socket.on("sentMessage", (text) => {
+    socket.on("sendMessage", (text) => {
       let user = users.find(user => user.socketId === socket.id)
       let message = {
         username: user.username, 
