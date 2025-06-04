@@ -118,7 +118,7 @@ twilioTokens.tokens.create().then(obj => {
     })
 
     socket.on("candidate", (id, candidate) => {
-      socket.to(id).emit("candidate", socket.id, candidate);
+      socket.to(id).emit("candidate", socket.id, candidate, fromWatcher);
     })
 
     socket.on("endBroadcast", () => {
