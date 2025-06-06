@@ -3,8 +3,11 @@
   "version": "1.0.1",
   "description": "A websocket app using socket.io, express, react",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node app.js"
+    "start": "node dist/app.js",
+    "build": "tsc",
+    "dev": "node dist/app.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +16,16 @@
     "express": "^4.18.2",
     "socket.io": "^4.8.1",
     "twilio": "^5.6.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.15.30",
+    "@types/webrtc": "^0.0.46",
+    "eslint": "^9.28.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.1"
   }
 }
